@@ -23,7 +23,10 @@ class Bar {
 
 @Component
 class Foo {
-    public Foo() {
+    private Bar bar;
+
+    public Foo(Bar bar) {
+        this.bar = bar;
         System.out.println("created Foo");
     }
 }
