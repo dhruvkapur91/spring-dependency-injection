@@ -1,6 +1,5 @@
 package com.example.bootcamp;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
@@ -16,14 +15,9 @@ public class BootcampApplication {
 class Bar {
     private Foo foo;
 
-    public Bar() {
-        System.out.println(foo);
-        System.out.println("created without foo");
-    }
-
     public Bar(Foo foo) {
         this.foo = foo;
-        System.out.println("created with foo");
+        System.out.println("created bar");
     }
 }
 
