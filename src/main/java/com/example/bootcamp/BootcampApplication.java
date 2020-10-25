@@ -3,14 +3,10 @@ package com.example.bootcamp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class BootcampApplication {
-
-    @Bean
-    Foo foo() {
-        return new Foo();
-    }
 
     @Bean
     Bar bar(Foo foo) {
@@ -31,6 +27,7 @@ class Bar {
     }
 }
 
+@Component
 class Foo {
     public Foo() {
         System.out.println("created Foo");
