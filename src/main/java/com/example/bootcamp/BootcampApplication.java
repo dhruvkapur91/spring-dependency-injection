@@ -8,22 +8,23 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class BootcampApplication {
 
-    @Bean
-    Bar bar(Foo foo) {
-        return new Bar(foo);
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(BootcampApplication.class, args);
     }
 }
 
+@Component
 class Bar {
-    private Foo foo;
 
     public Bar(Foo foo) {
-        this.foo = foo;
         System.out.println("created bar");
+    }
+}
+
+@Component
+class FooUser2 {
+    public FooUser2(Foo foo) {
+        System.out.println("craeted foo user 2");
     }
 }
 
