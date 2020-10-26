@@ -1,30 +1,37 @@
 package com.example.bootcamp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class BootcampApplication {
+
+    @Bean
+    Bar bar(Foo foo, @Value("#{ uuid.buildUuid()}") String uuid) {
+        return new Bar(foo, uuid);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BootcampApplication.class, args);
     }
 }
 
-@Component
-class Bar {
-
-    public Bar(Foo foo) {
-        System.out.println("created bar");
+@Component("uuid")
+class UuidService {
+    public String buildUuid() {
+        return UUID.randomUUID().toString();
     }
 }
 
-@Component
-class FooUser2 {
-    public FooUser2(Foo foo) {
-        System.out.println("craeted foo user 2");
+class Bar {
+    public Bar(Foo foo, String uuid) {
+        System.out.println(uuid);
+        System.out.println("created bar");
     }
 }
 
