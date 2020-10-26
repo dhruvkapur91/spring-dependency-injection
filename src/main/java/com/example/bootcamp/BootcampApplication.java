@@ -12,8 +12,8 @@ import java.util.UUID;
 public class BootcampApplication {
 
     @Bean
-    Bar bar(Foo foo, @Value("#{ uuid.buildUuid()}") String uuid) {
-        return new Bar(foo, uuid);
+    Bar bar(Foo foo) {
+        return new Bar(foo, UUID.randomUUID().toString());
     }
 
     public static void main(String[] args) {
