@@ -1,5 +1,7 @@
 package com.example.bootcamp;
 
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +26,11 @@ class UuidService {
 
 @Component
 class Bar {
+
+    private final Log log = LogFactory.getLog(getClass());
+
     public Bar(@Value("#{uuid.getUuid()}") String uuid) {
-        System.out.println("Getting UUID directly");
-        System.out.println(uuid);
+        log.info("UUID Is");
+        log.info(uuid);
     }
 }
