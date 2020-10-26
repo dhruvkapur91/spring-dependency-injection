@@ -6,12 +6,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class BootcampApplication {
 
     @Bean
-    void dummyBean(Foo foo) {
-        System.out.println("This got executed");
+    String dummyBean(@Value("#{uuid.getUuid()}") String uuid) {
+        System.out.println(uuid);
+        return "Hello";
+    }
+
+    @Bean
+    String dummyBean2(@Value("#{uuid.getUuid()}") String uuid) {
+        System.out.println(uuid);
+        return "Hello";
     }
 
     public static void main(String[] args) {
@@ -19,9 +28,15 @@ public class BootcampApplication {
     }
 }
 
-@Component
-class Foo {
-    public Foo() {
-        System.out.println("Created foo");
+@Component("uuid")
+class UuidService {
+    private final String uuid;
+
+    public UuidService() {
+        this.uuid = UUID.randomUUID().toString();
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 }
