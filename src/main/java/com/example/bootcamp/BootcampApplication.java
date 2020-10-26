@@ -29,8 +29,9 @@ class Bar {
 
     private final Log log = LogFactory.getLog(getClass());
 
-    public Bar(@Value("#{uuid.getUuid()}") String uuid) {
+    public Bar(@Value("#{uuid.getUuid()}") String uuid, @Value("#{1 > 2}") boolean someBooleanCondition) {
         log.info("UUID Is");
         log.info(uuid);
+        log.info("And the boolean condition is " + someBooleanCondition);
     }
 }
