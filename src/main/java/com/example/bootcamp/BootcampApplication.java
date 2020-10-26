@@ -1,17 +1,16 @@
 package com.example.bootcamp;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class BootcampApplication {
 
     @Bean
-    String getEnvironment(@Value("${environment}") String environment) {
-        System.out.println(environment);
-        return environment;
+    String useWriter(KeyValueWriter writer) {
+        return "hello";
     }
 
     public static void main(String[] args) {
@@ -19,3 +18,24 @@ public class BootcampApplication {
     }
 }
 
+interface KeyValueWriter {
+    public void write(String key, String value);
+}
+
+@Component
+class TestWriter implements KeyValueWriter {
+
+    @Override
+    public void write(String key, String value) {
+        System.out.println("Using the test implementation");
+    }
+}
+
+@Component
+class ProdWriter implements KeyValueWriter {
+
+    @Override
+    public void write(String key, String value) {
+        System.out.println("Using the production implementation");
+    }
+}
